@@ -5,10 +5,12 @@ import com.example.ems.dto.ProjectRequest;
 import com.example.ems.dto.ProjectResponse;
 import com.example.ems.entity.Department;
 import com.example.ems.entity.Project;
+import com.example.ems.entity.ProjectAssigned;
 import com.example.ems.exception.EntityNotFound;
 import com.example.ems.exception.RequiredRequest;
 import com.example.ems.mapper.ProjectMapper;
 import com.example.ems.repository.DepartmentRepository;
+import com.example.ems.repository.ProjectAssignedRepository;
 import com.example.ems.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import java.util.Optional;
 public class ProjectService {
     private final ProjectRepository projectRepository;
     private final DepartmentRepository departmentRepository;
+    private final ProjectAssignedRepository projectAssignedRepository;
 
 
     ///o Create projects with name, description, start date, and end date
@@ -77,6 +80,10 @@ public class ProjectService {
 
     ///o Delete projects
     public void deleteProject(Long id) {
+        List<ProjectAssigned> projectAssignments = projectAssignedRepository.findByProjectId(id);
+        if (!projectAssignments.isEmpty()) {
+            projectAssignedRepository.deleteAll(projectAssignments);
+        }
         projectRepository.deleteById(id);
     }
 

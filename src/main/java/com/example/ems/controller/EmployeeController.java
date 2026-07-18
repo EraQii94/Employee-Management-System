@@ -2,8 +2,10 @@ package com.example.ems.controller;
 
 
 import com.example.ems.dto.EmployeeRequest;
+import com.example.ems.dto.EmployeeUpdateRequest;
 import com.example.ems.dto.EmployeeResponse;
 import com.example.ems.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class EmployeeController {
     ////////////////////////////////////////////////////////////////////////////////
     ///1-post mapping
     @PostMapping
-    public ResponseEntity<EmployeeResponse> createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+    public ResponseEntity<EmployeeResponse> createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
         EmployeeResponse created = employeeService.createEmployee(employeeRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
@@ -41,7 +43,7 @@ public class EmployeeController {
 
     ///4-put Mapping
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeResponse> updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest employeeRequest){
+    public ResponseEntity<EmployeeResponse> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeUpdateRequest employeeRequest){
         return ResponseEntity.ok(employeeService.updateEmployee(id, employeeRequest));
     }
 
@@ -58,8 +60,8 @@ public class EmployeeController {
 
     /// 6-delete employee
     @DeleteMapping
-    public ResponseEntity deleteEmployee(@RequestParam Long id){
-        employeeService.deleteEmployee();
+    public ResponseEntity<Void> deleteEmployee(@RequestParam Long id){
+        employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
 }
