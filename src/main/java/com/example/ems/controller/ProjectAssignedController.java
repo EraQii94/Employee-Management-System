@@ -23,7 +23,8 @@ public class ProjectAssignedController {
     }
 
     @PostMapping("/projects/{projectId}/assignments")
-    public ResponseEntity<List<ProjectAssignedResponse>> assignMultipleToProject(@PathVariable Long projectId, @RequestBody List<ProjectAssignedRequest> requests){
+    public ResponseEntity<List<ProjectAssignedResponse>> assignMultipleToProject(@PathVariable Long projectId,
+                                                                                 @RequestBody List<ProjectAssignedRequest> requests){
         // ensure projectId is applied to each request
         for(ProjectAssignedRequest r : requests){
             r.setProjectId(projectId);

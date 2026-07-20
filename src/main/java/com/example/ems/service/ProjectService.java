@@ -37,8 +37,7 @@ public class ProjectService {
         project.setStartDate(request.getStartDate());
         project.setEndDate(request.getEndDate());
         projectRepository.save(project);
-        ProjectResponse projectResponse = ProjectMapper.toResponse(project);
-        return projectResponse;
+        return ProjectMapper.toResponse(project);
     }
 
     ///o View all projects or filter by department
@@ -81,6 +80,7 @@ public class ProjectService {
     ///o Delete projects
     public void deleteProject(Long id) {
         List<ProjectAssigned> projectAssignments = projectAssignedRepository.findByProjectId(id);
+        ///ده اللوجيك اللي بمسح بيه ال FK من الجدول التاني
         if (!projectAssignments.isEmpty()) {
             projectAssignedRepository.deleteAll(projectAssignments);
         }

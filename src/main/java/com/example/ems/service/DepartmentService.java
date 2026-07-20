@@ -41,10 +41,14 @@ public class DepartmentService {
                 .collect(Collectors.toList());
     }
 
-    ///o View departments in the system using id
+    /// o View departments in the system using id
     public DepartmentResponse getDepartmentById(Long id) {
         Optional<Department> department = departmentRepository.findById(id);
-        return DepartmentMapper.toResponse(department.get());
+        if (department.isPresent()) {
+            return DepartmentMapper.toResponse(department.get());
+        } else {
+            throw new EntityNotFound("Department not found with ID: " + id);
+        }
     }
 
     ///o Update department information

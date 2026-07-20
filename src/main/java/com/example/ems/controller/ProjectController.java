@@ -36,7 +36,8 @@ public class ProjectController {
 
     ///3-put Mapping
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id, @RequestBody ProjectRequest project) {
+    public ResponseEntity<ProjectResponse> updateProject(@PathVariable Long id,
+                                                         @RequestBody ProjectRequest project) {
         projectService.updateProject(id, project);
         return ResponseEntity.ok().build();
     }
@@ -57,7 +58,7 @@ public class ProjectController {
     /// 5- put Mapping to assign employee to department
     @PutMapping("/assign/{id}")
     public ResponseEntity<Void> assignProject(@PathVariable Long id,
-                                        @RequestParam Long departmentId){
+                                              @RequestParam Long departmentId){
 
         projectService.assignProjectToDepartment(id, departmentId);
         return ResponseEntity.ok().build();

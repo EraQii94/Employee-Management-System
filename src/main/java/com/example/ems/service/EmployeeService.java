@@ -30,6 +30,8 @@ public class EmployeeService {
 
     /// o Add new employees with personal information (name, email, phone,hire date, salary)
     public EmployeeResponse createEmployee(EmployeeRequest request) {
+
+        ///check if the employee already exists
         if (employeeRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExists("Employee with email " + request.getEmail() + " already exists.");
         }
@@ -42,7 +44,7 @@ public class EmployeeService {
             employee.setDepartment(department);
         }
 
-        //save Empployee
+        //save Employee
         employeeRepository.save(employee);
         return EmployeeMapper.toResponse(employee);
     }
@@ -87,7 +89,7 @@ public class EmployeeService {
         Employee existing = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new EntityNotFound("Employee not found with ID: " + employeeId));
 
-        // If email is changing, ensure uniqueness
+        /// If email is changing, ensure uniqueness
         if (request.getEmail() != null && !request.getEmail().equals(existing.getEmail())) {
             if (employeeRepository.existsByEmail(request.getEmail())) {
                 throw new EmailAlreadyExists("Employee with email " + request.getEmail() + " already exists.");
