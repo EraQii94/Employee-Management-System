@@ -28,6 +28,7 @@ public class DepartmentMapper {
         }
         DepartmentResponse departmentResponse = new DepartmentResponse();
 
+        departmentResponse.setId(department.getId());
         departmentResponse.setName(department.getName());
         departmentResponse.setLocation(department.getLocation());
         departmentResponse.setBudget(department.getBudget());

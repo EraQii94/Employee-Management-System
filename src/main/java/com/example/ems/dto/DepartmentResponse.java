@@ -13,6 +13,7 @@ import lombok.Setter;
 public class DepartmentResponse {
 
 
+    private Long id;
     private String name;
     private String location;
     private Double budget;

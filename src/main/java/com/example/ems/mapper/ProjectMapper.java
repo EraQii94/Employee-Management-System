@@ -24,6 +24,7 @@ public class ProjectMapper {
             return null;
         }
         ProjectResponse projectResponse = new ProjectResponse();
+        projectResponse.setId(project.getId());
         projectResponse.setName(project.getName());
         projectResponse.setDescription(project.getDescription());
         projectResponse.setStartDate(project.getStartDate());
