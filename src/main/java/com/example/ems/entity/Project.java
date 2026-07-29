@@ -20,18 +20,18 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+
     @NotBlank
     private String name;
 
 
     private String description;
 
-    @NotNull
+    @NotBlank
     private LocalDate startDate;
 
 
-    @NotNull
+    @NotBlank
     private LocalDate endDate;
 
 

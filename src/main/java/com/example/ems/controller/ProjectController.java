@@ -55,7 +55,7 @@ public class ProjectController {
         return ResponseEntity.ok().build();
     }
 
-    /// 5- put Mapping to assign employee to department
+    /// 5- put Mapping to assign Project to department
     @PutMapping("/assign/{id}")
     public ResponseEntity<Void> assignProject(@PathVariable Long id,
                                               @RequestParam Long departmentId){
