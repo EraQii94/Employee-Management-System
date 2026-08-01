@@ -20,24 +20,23 @@ public class Employee {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank
     private String name;
 
     @Column(nullable = false, unique = true)
     @Email
-    @NotBlank
+
     private String email;
 
 
     @Pattern(regexp = "^[+]?[0-9]{10,13}$", message = "Phone number must be 10-13 digits")
-    @NotBlank
+
     private String phoneNumber;
 
 
-    @NotBlank
+
     private LocalDate hireDate;
 
-    @NotBlank
+
     @Positive
     private double salary;
 

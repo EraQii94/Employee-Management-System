@@ -19,6 +19,6 @@ public class EmployeeResponse {
     private double salary;
     private String phoneNumber;
     private LocalDate hireDate;
-    private String departmentName;
+
 
 }

@@ -17,13 +17,10 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private String location;
 
-    @NotBlank
     private double budget;
 
 
